@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.nelioalves.cursomc.domain.converter.TipoClienteConverter;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
 
 @Entity
@@ -35,8 +37,9 @@ public class Cliente implements Serializable {
 	@Column(name = "CPF_CNPJ")
 	private String cpfOuCnpj;
 
+	@Convert(converter = TipoClienteConverter.class)
 	@Column(name = "TIPO")
-	private Integer tipo;
+	private TipoCliente tipo;
 
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -53,7 +56,7 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo.getCod();
+		this.tipo = tipo;
 	}
 
 	public Integer getId() {
@@ -88,12 +91,20 @@ public class Cliente implements Serializable {
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
+//	public TipoCliente getTipo() {
+//		return TipoCliente.toEnum(tipo);
+//	}
+//
+//	public void setTipo(TipoCliente tipo) {
+//		this.tipo = tipo.getCod();
+//	}
+
 	public TipoCliente getTipo() {
-		return TipoCliente.toEnum(tipo);
+		return tipo;
 	}
 
 	public void setTipo(TipoCliente tipo) {
-		this.tipo = tipo.getCod();
+		this.tipo = tipo;
 	}
 
 	public List<Endereco> getEnderecos() {
