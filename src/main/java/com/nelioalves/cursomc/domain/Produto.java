@@ -1,6 +1,7 @@
 package com.nelioalves.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Produto implements Serializable {
@@ -26,10 +29,11 @@ public class Produto implements Serializable {
 
 	@Column(name = "PRECO")
 	private Double preco;
-
+	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "PRODUTO_ID"), inverseJoinColumns = @JoinColumn(name = "CATEGORIA_ID"))
-	private List<Categoria> categorias;
+	private List<Categoria> categorias = new ArrayList<>();
 
 	public Produto() {
 	}
