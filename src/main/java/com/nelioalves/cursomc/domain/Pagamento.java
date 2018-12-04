@@ -3,6 +3,7 @@ package com.nelioalves.cursomc.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.nelioalves.cursomc.domain.converter.EstadoPagamentoConverter;
 import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
 
 @Entity
@@ -24,7 +26,8 @@ public class Pagamento implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
+	@Convert(converter = EstadoPagamentoConverter.class)
 	@Column(name = "ESTADO")
 	private EstadoPagamento estado;
 
