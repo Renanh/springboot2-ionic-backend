@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.nelioalves.cursomc.domain.converter.EstadoPagamentoConverter;
 import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
 
@@ -26,11 +27,12 @@ public class Pagamento implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Convert(converter = EstadoPagamentoConverter.class)
 	@Column(name = "ESTADO")
 	private EstadoPagamento estado;
 
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name = "PEDIDO_ID")
 	@MapsId
