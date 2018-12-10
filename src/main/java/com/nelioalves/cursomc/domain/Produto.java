@@ -33,6 +33,7 @@ public class Produto implements Serializable {
 	@Column(name = "PRECO")
 	private Double preco;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "PRODUTO_ID"), inverseJoinColumns = @JoinColumn(name = "CATEGORIA_ID"))
 	private List<Categoria> categorias = new ArrayList<>();
