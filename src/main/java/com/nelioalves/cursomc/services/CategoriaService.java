@@ -25,4 +25,9 @@ public class CategoriaService {
 		obj.setId(null);
 		return repo.saveAndFlush(obj);
 	}
+
+	public Categoria update(Categoria obj) {
+		this.find(obj.getId());
+		return repo.saveAndFlush(obj);
+	}
 }
