@@ -1,4 +1,4 @@
-package com.nelioalves.cursomc.resources.util;
+package com.nelioalves.cursomc.resources.utils;
 
 import java.net.URI;
 
