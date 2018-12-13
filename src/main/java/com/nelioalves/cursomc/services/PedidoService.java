@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nelioalves.cursomc.domain.Pedido;
 import com.nelioalves.cursomc.repositories.PedidoRepository;
-import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
+import com.nelioalves.cursomc.services.exception.ObjectNotFoundException;
 
 @Service
 public class PedidoService {
